@@ -12,5 +12,6 @@ declare module 'hono' {
 export type Env = {
 	Bindings: {
 		DB: D1Database;
+		PRIVATE_JWT_SECRET: string;
 	};
 };
