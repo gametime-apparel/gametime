@@ -1,9 +1,8 @@
 import { JOSEError } from 'jose/errors';
 import { HTTPException } from 'hono/http-exception';
 
-const handleJoseError = (err: unknown): never => {
+const handleJoseError = (err: unknown, message: string = 'Internal Server Error'): never => {
 	let cause = '';
-	const message = 'Unauthorized';
 
 	if (err instanceof JOSEError) {
 		switch (err.code) {
