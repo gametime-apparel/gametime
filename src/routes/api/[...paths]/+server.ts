@@ -1,4 +1,4 @@
-import app from '$lib/server/app';
+import app from '$lib/server/api/app';
 import type { RequestHandler } from './$types';
 
 const handler: RequestHandler = ({ request, platform }) => {
