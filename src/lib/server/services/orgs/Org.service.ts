@@ -2,6 +2,7 @@ import { type DrizzleD1Database } from 'drizzle-orm/d1';
 import type { NewOrg, schema } from '$lib/server/db/schema';
 import { orgs } from '$lib/server/db/schema';
 import { HTTPException } from 'hono/http-exception';
+import { eq } from 'drizzle-orm';
 
 class OrgService {
 	private readonly db: DrizzleD1Database<typeof schema>;
@@ -27,6 +28,10 @@ class OrgService {
 		}
 
 		return result;
+	}
+
+	public async getBySlug(slug: string) {
+		return this.db.query.orgs.findFirst({ where: (orgs) => eq(orgs.slug, slug) });
 	}
 }
 

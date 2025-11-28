@@ -26,6 +26,17 @@ const orgs = new Hono()
 			data,
 			message: 'Organization created successfully.'
 		});
+	})
+	.get('/:slug', async (c) => {
+		const { slug } = c.req.param();
+		const Org = c.var.Org;
+
+		const data = await Org.getBySlug(slug);
+
+		return c.json({
+			success: true,
+			data
+		});
 	});
 
 export default orgs;
