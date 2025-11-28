@@ -2,6 +2,7 @@
 	"name": "gametime",
 	"version": "0.0.1",
 	"devDependencies": {
+		"@cloudflare/vitest-pool-workers": "^0.10.11",
 		"@eslint/compat": "^1.4.0",
 		"@eslint/js": "^9.38.0",
 		"@playwright/test": "^1.56.1",
@@ -27,6 +28,7 @@
 		"typescript": "^5.9.3",
 		"typescript-eslint": "^8.46.1",
 		"vite": "^7.1.10",
+		"vitest": "~3.2.0",
 		"wrangler": "^4.50.0"
 	},
 	"private": true,
@@ -39,14 +41,15 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"format": "prettier --write .",
 		"lint": "prettier --check . && eslint .",
-		"test:e2e": "playwright test",
+		"test:e2e": "playwright src/lib/test",
 		"test": "npm run test:e2e",
 		"db:push": "drizzle-kit push",
 		"db:generate": "drizzle-kit generate",
 		"db:migrate": "drizzle-kit migrate",
 		"db:studio": "drizzle-kit studio",
 		"deploy": "bun run build && wrangler deploy",
-		"cf-typegen": "wrangler types ./src/worker-configuration.d.ts"
+		"cf-typegen": "wrangler types ./src/worker-configuration.d.ts",
+		"test:unit": "vitest"
 	},
 	"type": "module",
 	"dependencies": {
