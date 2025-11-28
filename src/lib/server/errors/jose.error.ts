@@ -1,7 +1,7 @@
 import { JOSEError } from 'jose/errors';
-import { HTTPException } from 'hono/http-exception';
+import type { Context } from 'hono';
 
-const handleJoseError = (err: unknown, message: string = 'Internal Server Error'): never => {
+const handleJoseError = (err: unknown, c: Context) => {
 	let cause = '';
 
 	if (err instanceof JOSEError) {
@@ -56,7 +56,17 @@ const handleJoseError = (err: unknown, message: string = 'Internal Server Error'
 		}
 	}
 
-	throw new HTTPException(401, { message, cause });
+	console.log(cause);
+	return c.json(
+		{
+			success: false,
+			error: {
+				name: 'Unauthorized',
+				message: cause
+			}
+		},
+		401
+	);
 };
 
 export default handleJoseError;
