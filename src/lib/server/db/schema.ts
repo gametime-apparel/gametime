@@ -19,7 +19,7 @@ export const schema = { orgs };
 
 export const insertOrgSchema = createSelectSchema(orgs, {
 	name: (schema) => schema.min(3, 'Name must be at least 3 chars'),
-	slug: (schema) => schema.regex(/^[a-z0-9-]+$/, 'Slug must be lowercase')
+	slug: (schema) => schema
 }).omit({
 	id: true,
 	createdAt: true,
