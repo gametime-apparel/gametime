@@ -9,9 +9,18 @@ declare module 'hono' {
 	}
 }
 
-export type Env = {
-	Bindings: {
-		DB: D1Database;
-		PRIVATE_JWT_SECRET: string;
-	};
+export type Bindings = {
+	DB: D1Database;
+	PRIVATE_JWT_SECRET: string;
 };
+
+
+export type Env = {
+	Bindings: Bindings;
+};
+
+declare module 'cloudflare:test' {
+	interface ProvidedEnv extends Bindings {
+		TEST_MIGRATIONS: D1Migration[]
+	}
+}
