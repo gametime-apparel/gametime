@@ -46,7 +46,7 @@
 		{/if}
 
 		<div class="space-y-6">
-			<Input type="password" name="password" placeholder="Enter Access Code" required />
+			<Input type="password" name="password" placeholder="Enter Access Code" required autoFocus={true} />
 
 			<div class="cf-turnstile flex justify-center" data-sitekey={PUBLIC_TURNSTILE_SITE_KEY}></div>
 
