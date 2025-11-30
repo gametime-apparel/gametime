@@ -25,7 +25,7 @@ const orgs = new Hono()
 			success: true,
 			data,
 			message: 'Organization created successfully.'
-		});
+		}, 201);
 	})
 	.get('/:slug', async (c) => {
 		const { slug } = c.req.param();
