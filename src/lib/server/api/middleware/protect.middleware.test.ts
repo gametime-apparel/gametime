@@ -28,6 +28,18 @@ describe('Middleware: Protect', () => {
 		expect(json.error.message).toBe('No token provided');
 	});
 
+	it('should block malformed tokens', async () => {
+		const res = await app.request(
+			'/',
+			{ headers: { Cookie: 'admin_session=this-is-not-a-jwt' } },
+			env
+		);
+
+		expect(res.status).toBe(401);
+		const json: TokenError = await res.json();
+		expect(json.error.message).toBe('Invalid JWS'); // or whatever you throw
+	});
+
 	it('should allow access with a valid token', async () => {
 		const tokens = await generateTestTokens();
 
