@@ -215,5 +215,28 @@ describe('Orgs', () => {
 			expect(req.status).toBe(400);
 			expect(res.success).toBe(false);
 		});
+
+		it('should fail no store', async () => {
+			const req = await client.orgs[':slug'].$put(
+				{
+					json: {
+						name: 'New test Store'
+					},
+					param: {
+						slug: 'test'
+					}
+				},
+				{
+					headers: {
+						Cookie: `admin_session=${token.valid}`
+					}
+				}
+			);
+
+			const res = await req.json();
+
+			expect(req.status).toBe(404);
+			expect(res.success).toBe(false);
+		});
 	});
 });
