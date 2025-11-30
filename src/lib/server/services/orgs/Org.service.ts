@@ -31,7 +31,13 @@ class OrgService {
 	}
 
 	public async getBySlug(slug: string) {
-		return this.db.query.orgs.findFirst({ where: (orgs) => eq(orgs.slug, slug) });
+		const data = await this.db.query.orgs.findFirst({ where: (orgs) => eq(orgs.slug, slug) });
+
+		if (!data) {
+			throw new HTTPException(404, { message: 'Org not found' });
+		}
+
+		return data;
 	}
 }
 
