@@ -1,10 +1,13 @@
 import { describe, expect, it } from 'vitest';
 import { client } from '$lib/test/setup';
+import { generateTestTokens } from '$lib/test/defaults.ts';
+
+const token = await generateTestTokens();
 
 describe('Orgs', () => {
 	describe('GET /orgs', () => {
-		it('with No token provided', async () => {
-			const req = await client.orgs.$get('/');
+		it('should fail with no token', async () => {
+			const req = await client.orgs.$get();
 
 			const res = await req.json();
 
@@ -12,13 +15,54 @@ describe('Orgs', () => {
 			expect(res.data).toBe(undefined);
 		});
 
-		it('No token provided', async () => {
-			const req = await client.orgs.$get('/', {
-				headers: {
-					cookie:
-						'admin_session=eyJhbGciOiJIUzI1NiJ9.eyJhZG1pbiI6dHJ1ZSwiaWF0IjoxNzY0MzY0NDAyLCJleHAiOjE3NjQ5NjkyMDJ9.DRFcboXkR6149E8w-wLNlS-x5CTwYotk8qambSbid1s'
+		it('should list all Orgs', async () => {
+			const req = await client.orgs.$get(
+				{},
+				{
+					headers: {
+						Cookie: `admin_session=${token.valid}`
+					}
+				}
+			);
+
+			const res = await req.json();
+
+			console.log(res);
+
+			expect(res.success).toBe(true);
+			expect(res.data).toBeDefined();
+		});
+	});
+
+	describe('POST /orgs', () => {
+		it('should fail with no token', async () => {
+			const req = await client.orgs.$post({
+				json: {
+					name: 'Test Org',
+					slug: 'test'
 				}
 			});
+
+			const res = await req.json();
+
+			expect(res.success).toBe(false);
+			expect(res.data).toBe(undefined);
+		});
+
+		it('should create an org', async () => {
+			const req = await client.orgs.$post(
+				{
+					json: {
+						name: 'Test Org',
+						slug: 'test'
+					}
+				},
+				{
+					headers: {
+						Cookie: `admin_session=${token.valid}`
+					}
+				}
+			);
 
 			const res = await req.json();
 
