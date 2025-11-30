@@ -53,7 +53,7 @@
 		<button
 			class="flex w-full items-center justify-between rounded-md p-2 text-sm hover:bg-indigo-50 dark:hover:bg-gray-600"
 		>
-			<div class="flex items-center space-x-2">
+			<span class="flex items-center space-x-2">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					class="h-4 w-4 text-gray-400"
@@ -65,7 +65,7 @@
 					<path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
 				</svg>
 				<span>Local Soccer Club</span>
-			</div>
+			</span>
 			<span class="text-xs text-gray-400">1 Store</span>
 		</button>
 	</div>
