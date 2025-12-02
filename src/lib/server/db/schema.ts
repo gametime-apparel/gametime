@@ -12,18 +12,19 @@ export const orgs = sqliteTable('orgs', {
 	updatedAt: integer('updated_at', { mode: 'timestamp' })
 		.notNull()
 		.$defaultFn(() => new Date())
-		.$onUpdate(() => new Date())
+		.$onUpdate(() => new Date()),
+	archivedAt: integer('archived_at', { mode: 'timestamp' })
 });
 
 export const schema = { orgs };
 
 export const insertOrgSchema = createSelectSchema(orgs, {
-	name: (schema) => schema,
-	slug: (schema) => schema
+	name: (schema) => schema
 }).omit({
 	id: true,
 	createdAt: true,
-	updatedAt: true
+	updatedAt: true,
+	archivedAt: true
 });
 
 export const updateOrgSchema = createSelectSchema(orgs, {
@@ -32,7 +33,8 @@ export const updateOrgSchema = createSelectSchema(orgs, {
 	id: true,
 	slug: true,
 	createdAt: true,
-	updatedAt: true
+	updatedAt: true,
+	archivedAt: true
 });
 
 export type NewOrg = z.infer<typeof insertOrgSchema>;
