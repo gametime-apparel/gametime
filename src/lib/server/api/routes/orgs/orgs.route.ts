@@ -1,7 +1,6 @@
 import { Hono } from 'hono';
-import { protect } from '$lib/server/api/middleware';
+import { protect, zValidator } from '$lib/server/api/middleware';
 import { insertOrgSchema, updateOrgSchema } from '$lib/server/db/schema';
-import { sValidator } from '@hono/standard-validator';
 
 const orgs = new Hono()
 	.get('/', protect, async (c) => {
@@ -14,7 +13,7 @@ const orgs = new Hono()
 			data
 		});
 	})
-	.post('/', protect, sValidator('json', insertOrgSchema), async (c) => {
+	.post('/', protect, zValidator('json', insertOrgSchema), async (c) => {
 		const Org = c.var.Org;
 
 		const insertData = c.req.valid('json');
@@ -41,7 +40,7 @@ const orgs = new Hono()
 			data
 		});
 	})
-	.put('/:slug', protect, sValidator('json', updateOrgSchema), async (c) => {
+	.put('/:slug', protect, zValidator('json', updateOrgSchema), async (c) => {
 		const { slug } = c.req.param();
 		const newData = c.req.valid('json');
 		const Org = c.var.Org;
