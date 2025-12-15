@@ -11,8 +11,6 @@ export const orgs = sqliteTable('orgs', {
 	...archivedAt
 });
 
-export const schema = { orgs };
-
 const slugRegex = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
 export const insertOrgSchema = createInsertSchema(orgs, {
