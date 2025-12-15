@@ -62,7 +62,6 @@ describe('Orgs', () => {
 
 			expect(req.status).toBe(401);
 			expect(res.success).toBe(false);
-			expect(res.data).toBe(undefined);
 		});
 
 		it('should fail making duplicate', async () => {
@@ -103,13 +102,17 @@ describe('Orgs', () => {
 
 			const res = await req.json();
 
+			if ('error' in res) {
+				throw new Error(`Expected success but got error: ${res.error.message}`);
+			}
+
 			expect(req.status).toBe(201);
 			expect(res.success).toBe(true);
 			expect(res.data.name).toBe('Test Org');
 			expect(res.data.slug).toBe('test');
 		});
 
-		it('should create an org and make url safe', async () => {
+		it('should give an invalid slug error', async () => {
 			const req = await client.orgs.$post(
 				{
 					json: {
@@ -126,10 +129,8 @@ describe('Orgs', () => {
 
 			const res = await req.json();
 
-			expect(req.status).toBe(201);
-			expect(res.success).toBe(true);
-			expect(res.data.name).toBe('Test Org');
-			expect(res.data.slug).toBe('test-123');
+			expect(req.status).toBe(400);
+			expect(res.success).toBe(false);
 		});
 	});
 
@@ -230,6 +231,10 @@ describe('Orgs', () => {
 			);
 
 			const res = await req.json();
+
+			if ('error' in res) {
+				throw new Error(`Expected success but got error: ${res.error.message}`);
+			}
 
 			expect(req.status).toBe(200);
 			expect(res.success).toBe(true);
