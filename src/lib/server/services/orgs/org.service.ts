@@ -1,5 +1,5 @@
 import { type DrizzleD1Database } from 'drizzle-orm/d1';
-import type { NewOrg, schema, UpdateOrg } from '$lib/server/db/schema';
+import { type NewOrg, type schema, type UpdateOrg } from '$lib/server/db/schema';
 import { orgs } from '$lib/server/db/schema';
 import { HTTPException } from 'hono/http-exception';
 import { and, eq, isNull } from 'drizzle-orm';
@@ -14,6 +14,9 @@ class OrgService {
 	public async findMany() {
 		return this.db.query.orgs.findMany({
 			where: isNull(orgs.archivedAt),
+			with: {
+				stores: true
+			},
 			columns: {
 				id: true,
 				name: true,
@@ -45,7 +48,7 @@ class OrgService {
 		});
 
 		if (!data) {
-			throw new HTTPException(404, { message: 'Org not found' });
+			throw new HTTPException(404, { message: 'Not found', cause: 'Org not found' });
 		}
 
 		return data;
@@ -60,7 +63,7 @@ class OrgService {
 			.get();
 
 		if (!data) {
-			throw new HTTPException(404, { message: 'Org not found' });
+			throw new HTTPException(404, { message: 'Not found', cause: 'Org not found' });
 		}
 
 		return data;
@@ -73,7 +76,7 @@ class OrgService {
 			.where(eq(orgs.slug, slug));
 
 		if (!data) {
-			throw new HTTPException(404, { message: 'Org not found' });
+			throw new HTTPException(404, { message: 'Not found', cause: 'Org not found' });
 		}
 
 		return data;

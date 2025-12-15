@@ -1,5 +1,5 @@
 import { Hono } from 'hono';
-import { orgs } from './routes';
+import { orgs, stores } from './routes';
 import { contextMiddleware } from '$lib/server/api/middleware';
 import globalErrorHandler from '$lib/server/errors';
 
@@ -14,7 +14,7 @@ app.get('/', (c) => {
 app.use('*', contextMiddleware);
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const routes = app.route('/orgs', orgs);
+const routes = app.route('/orgs', orgs).route('/orgs/:orgSlug/stores', stores);
 
 app.onError(globalErrorHandler);
 

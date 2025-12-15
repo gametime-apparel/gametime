@@ -18,7 +18,6 @@ const zValidator = <T extends ZodType, Target extends keyof ValidationTargets>(
 					success: false,
 					error: {
 						name: 'Validation Error',
-						// Return the first validation issue message
 						message: result.error.issues[0].message
 					}
 				},

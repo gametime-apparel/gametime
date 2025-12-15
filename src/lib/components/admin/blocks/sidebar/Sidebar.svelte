@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Dropdown from './Dropdown.svelte';
 	import { clickOutside } from '$lib/utils';
+	import { orgState } from '$lib/stores';
 	// Assume you have your ThemeToggle, etc., imported here
 	// import ThemeToggle from '$lib/components/ui/ThemeToggle.svelte';
 	// ... let { children } = $props(); (Svelte 5)
@@ -63,6 +64,8 @@
 	</aside>
 
 	<main class="ml-64 p-8">
-		<slot />
+		{#each orgState.list as org (org.id)}
+			{org.name}
+		{/each}
 	</main>
 </div>

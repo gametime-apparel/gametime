@@ -3,6 +3,7 @@ import * as storesSchema from './stores.schema';
 
 export * from './orgs.schema';
 export * from './stores.schema';
+export * from './relations';
 
 export const schema = {
 	orgs: orgsSchema.orgs,
