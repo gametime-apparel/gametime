@@ -5,7 +5,6 @@ import { loadFlash } from 'sveltekit-flash-message/server';
 
 
 export const load: LayoutServerLoad = loadFlash(async ({ fetch, cookies }) => {
-	console.log('ran')
 	if (!cookies.get('admin_session')) {
 		return;
 	}
