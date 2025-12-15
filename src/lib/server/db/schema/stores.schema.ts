@@ -1,5 +1,5 @@
 import { integer, sqliteTable, text } from 'drizzle-orm/sqlite-core';
-import { timestamps, archivedAt } from '$lib/server/db/schema/shared.ts';
+import { timestamps, archivedAt } from './shared.ts';
 import { createInsertSchema } from 'drizzle-zod';
 import { z } from 'zod';
 
