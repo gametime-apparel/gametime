@@ -12,7 +12,7 @@ class OrgService {
 		this.db = db;
 	}
 
-	public async findMany() {
+	public async listWithStores() {
 		return this.db.query.orgs.findMany({
 			where: isNull(orgs.archivedAt),
 			with: {

@@ -6,7 +6,7 @@ const orgs = new Hono()
 	.get('/', protect, async (c) => {
 		const Org = c.var.Org;
 
-		const data = await Org.findMany();
+		const data = await Org.listWithStores();
 
 		return c.json({
 			success: true,
