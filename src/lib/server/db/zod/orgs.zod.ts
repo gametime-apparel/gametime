@@ -1,6 +1,6 @@
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod';
-import orgs from '../schema/orgs.schema.ts';
-import { selectStoreSchema } from './stores.zod.ts';
+import { orgs } from '../schema/orgs.schema';
+import { selectStoreSchema } from './stores.zod';
 import { z } from 'zod';
 
 const slugRegex = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;

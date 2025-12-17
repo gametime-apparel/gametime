@@ -1,8 +1,8 @@
 import { integer, sqliteTable, text, uniqueIndex } from 'drizzle-orm/sqlite-core';
 import { timestamps, archivedAt } from './shared.ts';
-import orgs from './orgs.schema.ts';
+import { orgs } from './orgs.schema.ts';
 
-const stores = sqliteTable(
+export const stores = sqliteTable(
 	'stores',
 	{
 		id: integer('id').primaryKey({ autoIncrement: true }),
@@ -18,5 +18,3 @@ const stores = sqliteTable(
 	},
 	(t) => [uniqueIndex('org_slug_idx').on(t.orgId, t.slug)]
 );
-
-export default stores;

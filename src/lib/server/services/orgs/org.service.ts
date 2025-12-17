@@ -74,7 +74,7 @@ class OrgService {
 		const data = await this.db
 			.update(orgs)
 			.set({ archivedAt: new Date() })
-			.where(eq(orgs.slug, slug));
+			.where(and(eq(orgs.slug, slug), isNull(orgs.archivedAt)));
 
 		if (!data) {
 			throw new HTTPException(404, { message: 'Not found', cause: 'Org not found' });
