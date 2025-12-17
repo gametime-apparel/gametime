@@ -1,7 +1,7 @@
 import type { Actions, PageServerLoad } from './$types';
 import { superValidate, message } from 'sveltekit-superforms';
 import { zod4 } from 'sveltekit-superforms/adapters';
-import { insertOrgSchema } from '$lib/server/db/schema';
+import { insertOrgSchema } from '$lib/server/db/zod';
 import { fail } from '@sveltejs/kit';
 import client from '$lib/client';
 import { redirect } from 'sveltekit-flash-message/server';
@@ -31,8 +31,6 @@ export const actions: Actions = {
 			if (!json.success && !res.ok) {
 				return message(form, json.error.message, { status: res.status });
 			}
-
-
 		} catch (err) {
 			console.error(err);
 			return message(form, 'Connection failed. Please try again.', { status: 500 });
@@ -42,9 +40,9 @@ export const actions: Actions = {
 			`/admin`,
 			{
 				type: 'success',
-				message: 'Organization Created',
+				message: 'Organization Created'
 			},
 			event
 		);
 	}
-}
+};

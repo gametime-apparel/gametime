@@ -1,7 +1,7 @@
 import type { Actions, PageServerLoad } from './$types';
 import { superValidate, message } from 'sveltekit-superforms';
 import { zod4 } from 'sveltekit-superforms/adapters';
-import { updateOrgSchema } from '$lib/server/db/schema';
+import { updateOrgSchema } from '$lib/server/db/zod';
 import { fail } from '@sveltejs/kit';
 import client from '$lib/client';
 import { redirect } from 'sveltekit-flash-message/server';
@@ -30,7 +30,7 @@ export const actions: Actions = {
 		try {
 			const res = await client(event.fetch).api.orgs[':slug'].$put({
 				param: {
-					slug: event.params.orgSlug,
+					slug: event.params.orgSlug
 				},
 				json: {
 					name: form.data.name
@@ -42,8 +42,6 @@ export const actions: Actions = {
 			if (!json.success && !res.ok) {
 				return message(form, json.error.message, { status: 400 });
 			}
-
-
 		} catch (err) {
 			console.error(err);
 			return message(form, 'Connection failed. Please try again.', { status: 500 });
@@ -53,9 +51,9 @@ export const actions: Actions = {
 			`/admin`,
 			{
 				type: 'success',
-				message: 'Organization Updated',
+				message: 'Organization Updated'
 			},
 			event
 		);
 	}
-}
+};

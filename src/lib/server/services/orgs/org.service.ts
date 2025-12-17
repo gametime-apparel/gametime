@@ -1,5 +1,6 @@
-import { type DrizzleD1Database } from 'drizzle-orm/d1';
-import { type NewOrg, type schema, type UpdateOrg } from '$lib/server/db/schema';
+import type { DrizzleD1Database } from 'drizzle-orm/d1';
+import type { NewOrg, UpdateOrg } from '$lib/server/db/contracts';
+import type { schema } from '$lib/server/db/schema';
 import { orgs } from '$lib/server/db/schema';
 import { HTTPException } from 'hono/http-exception';
 import { and, eq, isNull } from 'drizzle-orm';
@@ -23,7 +24,7 @@ class OrgService {
 				slug: true,
 				createdAt: true
 			},
-			orderBy: (orgs, { asc }) => [asc(orgs.name)],
+			orderBy: (orgs, { asc }) => [asc(orgs.name)]
 		});
 	}
 

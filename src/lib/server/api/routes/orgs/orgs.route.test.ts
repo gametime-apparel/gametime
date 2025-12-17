@@ -245,8 +245,7 @@ describe('Orgs', () => {
 			const req = await client.orgs[':slug'].$put(
 				{
 					json: {
-						//@ts-expect-error: Should fail due to test
-						name: null
+						name: undefined
 					},
 					param: {
 						slug: 'main'

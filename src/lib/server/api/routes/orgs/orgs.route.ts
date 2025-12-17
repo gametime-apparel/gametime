@@ -1,6 +1,6 @@
 import { Hono } from 'hono';
 import { protect, zValidator } from '$lib/server/api/middleware';
-import { insertOrgSchema, updateOrgSchema } from '$lib/server/db/schema';
+import { insertOrgSchema, updateOrgSchema } from '$lib/server/db/zod';
 
 const orgs = new Hono()
 	.get('/', protect, async (c) => {
