@@ -19,7 +19,9 @@ export const insertOrgSchema = createInsertSchema(orgs, {
 	archivedAt: true
 });
 
-export const updateOrgSchema = insertOrgSchema.partial();
+export const updateOrgSchema = insertOrgSchema.partial().omit({
+	slug: true
+});
 
 export const selectOrgSchema = createSelectSchema(orgs).omit({
 	updatedAt: true,
@@ -27,6 +29,5 @@ export const selectOrgSchema = createSelectSchema(orgs).omit({
 });
 
 export const selectOrgWithStoreSchema = selectOrgSchema.extend({
-	createdAt: z.string(),
 	stores: z.array(selectStoreSchema)
 });

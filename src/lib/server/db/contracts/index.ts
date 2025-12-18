@@ -1,1 +1,2 @@
-export * from './orgs.contracts';
+export * from './orgs.contract';
+export * from './stores.contract';
