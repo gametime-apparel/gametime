@@ -13,26 +13,10 @@ class OrgService {
 		this.db = db;
 	}
 
-	public async listWithStores() {
-		return this.db.query.orgs.findMany({
-			where: isNull(orgs.archivedAt),
-			with: {
-				stores: true
-			},
-			columns: {
-				id: true,
-				name: true,
-				slug: true,
-				createdAt: true
-			},
-			orderBy: (orgs, { asc }) => [asc(orgs.name)]
-		});
-	}
-
 	public async create(insertData: NewOrg) {
 		const data = {
 			name: insertData.name,
-			slug: insertData.slug.toLowerCase().replace(/[^a-z0-9]/g, '-')
+			slug: insertData.slug
 		};
 
 		const result = await this.db.insert(orgs).values(data).onConflictDoNothing().returning().get();
@@ -44,7 +28,17 @@ class OrgService {
 		return result;
 	}
 
-	public async getBySlug(slug: string) {
+	public async list() {
+		return this.db.query.orgs.findMany({
+			where: isNull(orgs.archivedAt),
+			with: {
+				stores: true
+			},
+			orderBy: (orgs, { asc }) => [asc(orgs.name)]
+		});
+	}
+
+	public async find(slug: string) {
 		const data = await this.db.query.orgs.findFirst({
 			where: and(eq(orgs.slug, slug), isNull(orgs.archivedAt))
 		});
@@ -56,7 +50,7 @@ class OrgService {
 		return data;
 	}
 
-	public async updateBySlug(slug: string, updateData: UpdateOrg) {
+	public async update(slug: string, updateData: UpdateOrg) {
 		const data = await this.db
 			.update(orgs)
 			.set(updateData)
@@ -71,17 +65,13 @@ class OrgService {
 		return data;
 	}
 
-	public async deleteBySlug(slug: string) {
-		const data = await this.db
+	public async delete(slug: string) {
+		await this.db
 			.update(orgs)
 			.set({ archivedAt: new Date() })
 			.where(and(eq(orgs.slug, slug), isNull(orgs.archivedAt)));
 
-		if (!data) {
-			throw new ErrorResponse(ERR.ORG_NOT_FOUND);
-		}
-
-		return data;
+		return;
 	}
 }
 
