@@ -3,7 +3,7 @@ import { Hono } from 'hono';
 import { env } from 'cloudflare:test';
 import protect from './protect.middleware';
 import { generateTestTokens } from '$lib/test/defaults';
-import globalErrorHandler from '$lib/server/errors';
+import errorBoundary from '$lib/server/http/error-boundary';
 
 type TokenError = {
 	error: {
@@ -16,9 +16,7 @@ type TokenValidated = {
 };
 
 describe('Middleware: Protect', () => {
-	const app = new Hono()
-		.get('/', protect, (c) => c.json({ success: true }))
-		.onError(globalErrorHandler);
+	const app = new Hono().get('/', protect, (c) => c.json({ success: true })).onError(errorBoundary);
 
 	it('should return 401 if no token is provided', async () => {
 		const res = await app.request('/', {}, env);

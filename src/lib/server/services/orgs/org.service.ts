@@ -2,8 +2,9 @@ import type { DrizzleD1Database } from 'drizzle-orm/d1';
 import type { NewOrg, UpdateOrg } from '$lib/server/db/contracts';
 import type { schema } from '$lib/server/db/schema';
 import { orgs } from '$lib/server/db/schema';
-import { HTTPException } from 'hono/http-exception';
 import { and, eq, isNull } from 'drizzle-orm';
+import { ERR } from '$lib/server/faults';
+import ErrorResponse from '$lib/server/http/ErrorResponse';
 
 class OrgService {
 	private readonly db: DrizzleD1Database<typeof schema>;
@@ -37,7 +38,7 @@ class OrgService {
 		const result = await this.db.insert(orgs).values(data).onConflictDoNothing().returning().get();
 
 		if (!result) {
-			throw new HTTPException(409, { message: 'Conflict', cause: 'Org already exists' });
+			throw new ErrorResponse(ERR.ORG_EXISTS);
 		}
 
 		return result;
@@ -49,7 +50,7 @@ class OrgService {
 		});
 
 		if (!data) {
-			throw new HTTPException(404, { message: 'Not found', cause: 'Org not found' });
+			throw new ErrorResponse(ERR.ORG_NOT_FOUND);
 		}
 
 		return data;
@@ -64,7 +65,7 @@ class OrgService {
 			.get();
 
 		if (!data) {
-			throw new HTTPException(404, { message: 'Not found', cause: 'Org not found' });
+			throw new ErrorResponse(ERR.ORG_NOT_FOUND);
 		}
 
 		return data;
@@ -77,7 +78,7 @@ class OrgService {
 			.where(and(eq(orgs.slug, slug), isNull(orgs.archivedAt)));
 
 		if (!data) {
-			throw new HTTPException(404, { message: 'Not found', cause: 'Org not found' });
+			throw new ErrorResponse(ERR.ORG_NOT_FOUND);
 		}
 
 		return data;

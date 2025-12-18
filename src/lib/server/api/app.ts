@@ -1,7 +1,7 @@
 import { Hono } from 'hono';
 import { orgs, stores } from './routes';
 import { contextMiddleware } from '$lib/server/api/middleware';
-import globalErrorHandler from '$lib/server/errors';
+import errorBoundary from '$lib/server/http/error-boundary';
 
 const app = new Hono().basePath('/api');
 
@@ -16,7 +16,7 @@ app.use('*', contextMiddleware);
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const routes = app.route('/orgs', orgs).route('/orgs/:orgSlug/stores', stores);
 
-app.onError(globalErrorHandler);
+app.onError(errorBoundary);
 
 export default app;
 export type AppType = typeof routes;
