@@ -52,7 +52,7 @@
 		"db:studio": "drizzle-kit studio",
 		"deploy": "bun run build && wrangler deploy",
 		"cf-typegen": "wrangler types ./src/worker-configuration.d.ts",
-		"test:unit": "vitest"
+		"test:unit": "vitest run"
 	},
 	"type": "module",
 	"dependencies": {
