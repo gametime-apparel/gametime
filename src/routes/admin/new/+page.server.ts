@@ -26,9 +26,8 @@ export const actions: Actions = {
 				}
 			});
 
-			const json = await res.json();
-
-			if (!json.success && !res.ok) {
+			if (!res.ok) {
+				const json = await res.json();
 				return message(form, json.error.message, { status: res.status });
 			}
 		} catch (err) {
