@@ -2,7 +2,7 @@ import type { Actions, PageServerLoad } from './$types';
 import { superValidate, message } from 'sveltekit-superforms';
 import { zod4 } from 'sveltekit-superforms/adapters';
 import { updateOrgSchema } from '$lib/server/db/zod';
-import { fail } from '@sveltejs/kit';
+import { fail, error } from '@sveltejs/kit';
 import client from '$lib/client';
 import { redirect } from 'sveltekit-flash-message/server';
 
@@ -12,6 +12,13 @@ export const load: PageServerLoad = async ({ fetch, params }) => {
 			slug: params.orgSlug
 		}
 	});
+
+	if (!res.ok) {
+		const json = await res.json();
+		error(404, {
+			message: json.error.message
+		});
+	}
 
 	const json = await res.json();
 
@@ -37,9 +44,8 @@ export const actions: Actions = {
 				}
 			});
 
-			const json = await res.json();
-
-			if (!json.success && !res.ok) {
+			if (!res.ok) {
+				const json = await res.json();
 				return message(form, json.error.message, { status: 400 });
 			}
 		} catch (err) {
