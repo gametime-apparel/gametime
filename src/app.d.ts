@@ -1,7 +1,11 @@
+import type OrgService from '$lib/server/services/orgs/org.service';
+
 declare global {
 	namespace App {
 		// interface Error {}
-		// interface Locals {}
+		interface Locals {
+			Org: OrgService;
+		}
 		interface PageData {
 			flash?: { type: 'success' | 'error'; message: string };
 		}

@@ -1,38 +1,29 @@
 import type { Actions, PageServerLoad } from './$types';
-import { superValidate, message } from 'sveltekit-superforms';
+import { superValidate } from 'sveltekit-superforms';
 import { zod4 } from 'sveltekit-superforms/adapters';
-import { insertOrgSchema } from '$lib/server/db/zod';
+import { createOrgSchema } from '$lib/server/contracts';
 import { fail } from '@sveltejs/kit';
-import client from '$lib/client';
 import { redirect } from 'sveltekit-flash-message/server';
+import { handleActionError } from '$lib/server/http';
 
 export const load: PageServerLoad = async () => {
-	const form = await superValidate(zod4(insertOrgSchema));
+	const form = await superValidate(zod4(createOrgSchema));
 	return { form };
 };
 
 export const actions: Actions = {
 	default: async (event) => {
-		const form = await superValidate(event.request, zod4(insertOrgSchema));
+		const { locals } = event;
+		const form = await superValidate(event.request, zod4(createOrgSchema));
 
 		if (!form.valid) {
 			return fail(400, { form });
 		}
 
 		try {
-			const res = await client(event.fetch).api.orgs.$post({
-				json: {
-					...form.data
-				}
-			});
-
-			if (!res.ok) {
-				const json = await res.json();
-				return message(form, json.error.message, { status: res.status });
-			}
+			await locals.Org.create(form.data);
 		} catch (err) {
-			console.error(err);
-			return message(form, 'Connection failed. Please try again.', { status: 500 });
+			return handleActionError(form, err);
 		}
 
 		throw redirect(

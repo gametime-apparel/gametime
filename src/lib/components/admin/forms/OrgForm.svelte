@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { superForm } from 'sveltekit-superforms';
 	import type { SuperValidated } from 'sveltekit-superforms';
-	import type { NewOrg, UpdateOrg } from '$lib/server/db/contracts';
+	import type { CreateOrg, UpdateOrg } from '$lib/server/contracts';
 	import { TextInput, SlugInput, SubmitButton } from '$lib/components/admin/ui';
 	import { untrack } from 'svelte';
 
 	interface Props {
 		mode?: 'create' | 'update';
-		formData: SuperValidated<NewOrg> | SuperValidated<UpdateOrg>;
+		formData: SuperValidated<CreateOrg> | SuperValidated<UpdateOrg>;
 	}
 
 	let { mode = 'create', formData }: Props = $props();

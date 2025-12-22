@@ -1,57 +1,27 @@
 import type { Actions, PageServerLoad } from './$types';
-import { superValidate, message } from 'sveltekit-superforms';
+import { superValidate } from 'sveltekit-superforms';
 import { zod4 } from 'sveltekit-superforms/adapters';
-import { updateOrgSchema } from '$lib/server/db/zod';
-import { fail, error } from '@sveltejs/kit';
-import client from '$lib/client';
+import { selectOrgSchema, updateOrgSchema } from '$lib/server/contracts';
+import { fail } from '@sveltejs/kit';
 import { redirect } from 'sveltekit-flash-message/server';
 
-export const load: PageServerLoad = async ({ fetch, params }) => {
-	const res = await client(fetch).api.orgs[':slug'].$get({
-		param: {
-			slug: params.orgSlug
-		}
-	});
+export const load: PageServerLoad = async ({ params, locals }) => {
+	const org = await locals.Org.find(params.orgSlug);
 
-	if (!res.ok) {
-		const json = await res.json();
-		error(404, {
-			message: json.error.message
-		});
-	}
-
-	const json = await res.json();
-
-	const form = await superValidate(json.data, zod4(updateOrgSchema));
+	const form = await superValidate(org, zod4(selectOrgSchema));
 	return { form };
 };
 
 export const actions: Actions = {
 	default: async (event) => {
-		const form = await superValidate(event.request, zod4(updateOrgSchema));
+		const { params, locals, request } = event;
+		const form = await superValidate(request, zod4(updateOrgSchema));
 
 		if (!form.valid) {
 			return fail(400, { form });
 		}
 
-		try {
-			const res = await client(event.fetch).api.orgs[':slug'].$put({
-				param: {
-					slug: event.params.orgSlug
-				},
-				json: {
-					name: form.data.name
-				}
-			});
-
-			if (!res.ok) {
-				const json = await res.json();
-				return message(form, json.error.message, { status: 400 });
-			}
-		} catch (err) {
-			console.error(err);
-			return message(form, 'Connection failed. Please try again.', { status: 500 });
-		}
+		await locals.Org.update(params.orgSlug, form.data);
 
 		throw redirect(
 			`/admin`,

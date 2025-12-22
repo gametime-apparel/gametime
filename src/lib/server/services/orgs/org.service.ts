@@ -1,10 +1,10 @@
 import type { DrizzleD1Database } from 'drizzle-orm/d1';
-import type { NewOrg, UpdateOrg } from '$lib/server/db/contracts';
 import type { schema } from '$lib/server/db/schema';
 import { orgs } from '$lib/server/db/schema';
 import { and, eq, isNull } from 'drizzle-orm';
-import { ERR } from '$lib/server/faults';
-import ErrorResponse from '$lib/server/http/ErrorResponse';
+import type { CreateOrg, UpdateOrg } from '$lib/server/contracts';
+import { selectOrgSchema, selectOrgsSchema } from '$lib/server/contracts';
+import { error } from '@sveltejs/kit';
 
 class OrgService {
 	private readonly db: DrizzleD1Database<typeof schema>;
@@ -13,7 +13,7 @@ class OrgService {
 		this.db = db;
 	}
 
-	public async create(insertData: NewOrg) {
+	public async create(insertData: CreateOrg) {
 		const data = {
 			name: insertData.name,
 			slug: insertData.slug
@@ -22,20 +22,22 @@ class OrgService {
 		const result = await this.db.insert(orgs).values(data).onConflictDoNothing().returning().get();
 
 		if (!result) {
-			throw new ErrorResponse(ERR.ORG_EXISTS);
+			throw error(409, 'Org already exists');
 		}
 
-		return result;
+		return selectOrgSchema.parse(result);
 	}
 
 	public async list() {
-		return this.db.query.orgs.findMany({
+		const result = await this.db.query.orgs.findMany({
 			where: isNull(orgs.archivedAt),
 			with: {
 				stores: true
 			},
 			orderBy: (orgs, { asc }) => [asc(orgs.name)]
 		});
+
+		return selectOrgsSchema.parse(result);
 	}
 
 	public async find(slug: string) {
@@ -44,10 +46,10 @@ class OrgService {
 		});
 
 		if (!data) {
-			throw new ErrorResponse(ERR.ORG_NOT_FOUND);
+			throw error(404, 'Org not found');
 		}
 
-		return data;
+		return selectOrgSchema.parse(data);
 	}
 
 	public async update(slug: string, updateData: UpdateOrg) {
@@ -59,10 +61,10 @@ class OrgService {
 			.get();
 
 		if (!data) {
-			throw new ErrorResponse(ERR.ORG_NOT_FOUND);
+			throw error(404, 'Org not found');
 		}
 
-		return data;
+		return selectOrgSchema.parse(data);
 	}
 
 	public async delete(slug: string) {

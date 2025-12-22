@@ -1,13 +1,16 @@
 import { redirect, type Handle } from '@sveltejs/kit';
 import { jwtVerify } from 'jose';
 import { PRIVATE_JWT_SECRET } from '$env/static/private';
+import OrgService from '$lib/server/services/orgs/org.service.ts';
+import { drizzle } from 'drizzle-orm/d1';
+import { schema } from '$lib/server/db/schema';
 
 export const handle: Handle = async ({ event, resolve }) => {
 	if (event.url.pathname.startsWith('/admin')) {
 		const token = event.cookies.get('admin_session');
 
 		if (!token) {
-			throw redirect(303, '/auth');
+			throw redirect(303, '/login');
 		}
 
 		try {
@@ -18,6 +21,13 @@ export const handle: Handle = async ({ event, resolve }) => {
 			throw redirect(303, '/login');
 		}
 	}
+
+	if (!event.platform) {
+		throw new Error('Event platform is undefined');
+	}
+
+	const db = drizzle(event.platform.env.DB, { schema });
+	event.locals.Org = new OrgService(db) as OrgService;
 
 	return resolve(event);
 };
