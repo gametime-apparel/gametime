@@ -1,10 +1,10 @@
 <script lang="ts">
-	/**
-	 * ColorPicker.svelte
-	 * A grouped color selector with high-visibility selection states.
-	 */
+	type Props = {
+		value: string;
+	};
 
-	// Define colors in a simple list
+	let { value = $bindable('indigo') }: Props = $props();
+
 	const colors = [
 		'slate',
 		'gray',
@@ -30,11 +30,12 @@
 		'rose'
 	];
 
-	let { selectedColor = $bindable('indigo') } = $props();
+	let selectedColor = $state('indigo');
 
 	function selectColor(color: string, e: MouseEvent) {
 		e.preventDefault();
 		selectedColor = color;
+		value = color;
 	}
 </script>
 

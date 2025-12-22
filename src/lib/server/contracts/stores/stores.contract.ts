@@ -7,7 +7,8 @@ const editableFields = {
 	name: true,
 	slug: true,
 	color: true,
-	shipping: true
+	shipping: true,
+	orgId: true
 } as const;
 
 const overrides = {

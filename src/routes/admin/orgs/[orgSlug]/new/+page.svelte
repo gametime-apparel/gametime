@@ -10,5 +10,5 @@
 	title="Create Store"
 	subtitle="Add a new store for {data.currentOrg.name}"
 >
-	<StoreForm orgSlug={data.currentOrg.slug} formData={data.form} />
+	<StoreForm currentOrg={data.currentOrg} formData={data.form} />
 </Page>
