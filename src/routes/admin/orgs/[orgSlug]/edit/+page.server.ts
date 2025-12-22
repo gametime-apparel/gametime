@@ -5,10 +5,10 @@ import { selectOrgSchema, updateOrgSchema } from '$lib/server/contracts';
 import { fail } from '@sveltejs/kit';
 import { redirect } from 'sveltekit-flash-message/server';
 
-export const load: PageServerLoad = async ({ params, locals }) => {
-	const org = await locals.Org.find(params.orgSlug);
+export const load: PageServerLoad = async ({ parent }) => {
+	const { currentOrg } = await parent();
 
-	const form = await superValidate(org, zod4(selectOrgSchema));
+	const form = await superValidate(currentOrg, zod4(selectOrgSchema));
 	return { form };
 };
 
