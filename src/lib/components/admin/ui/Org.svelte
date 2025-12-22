@@ -1,10 +1,10 @@
 <script lang="ts">
-	import type { SelectOrgWithStore } from '$lib/server/db/contracts';
+	import type { Org } from '$lib/server/contracts';
 	import { resolve } from '$app/paths';
 	import { slide } from 'svelte/transition';
 
 	type Props = {
-		org: SelectOrgWithStore;
+		org: Org;
 	};
 
 	let storesOpen = $state(false);
@@ -50,8 +50,6 @@
 					>
 						/{org.slug}
 					</code>
-					<span class="hidden sm:inline">•</span>
-					<span class="hidden sm:inline">Added {new Date(org.createdAt).toLocaleDateString()}</span>
 				</div>
 			</div>
 		</div>
@@ -138,7 +136,7 @@
 
 				<!-- Quick Add Store Link (Always visible in expanded view) -->
 				<a
-					href="/admin/orgs/{org.id}/stores/new"
+					href={resolve(`/admin/orgs/${org.slug}/new`)}
 					class="flex items-center justify-center gap-2 rounded-lg border border-dashed border-indigo-300 bg-indigo-50 px-4 py-3 text-sm font-bold text-indigo-600 transition-all hover:border-indigo-400 hover:bg-indigo-100 dark:border-indigo-700 dark:bg-indigo-900/20 dark:text-indigo-400 dark:hover:bg-indigo-900/40"
 				>
 					<svg
