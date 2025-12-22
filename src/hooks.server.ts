@@ -1,7 +1,7 @@
 import { redirect, type Handle } from '@sveltejs/kit';
 import { jwtVerify } from 'jose';
 import { PRIVATE_JWT_SECRET } from '$env/static/private';
-import OrgService from '$lib/server/services/orgs/org.service.ts';
+import { Org } from '$lib/server/services';
 import { drizzle } from 'drizzle-orm/d1';
 import { schema } from '$lib/server/db/schema';
 
@@ -27,7 +27,8 @@ export const handle: Handle = async ({ event, resolve }) => {
 	}
 
 	const db = drizzle(event.platform.env.DB, { schema });
-	event.locals.Org = new OrgService(db) as OrgService;
+	event.locals.db = db;
+	event.locals.Org = new Org(db);
 
 	return resolve(event);
 };
