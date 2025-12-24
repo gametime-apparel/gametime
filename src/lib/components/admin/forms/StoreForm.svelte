@@ -4,7 +4,7 @@
 	import ColorPicker from '$lib/components/admin/forms/ColorPicker.svelte';
 	import Shipping from '$lib/components/admin/forms/Shipping.svelte';
 	import { superForm, type SuperValidated } from 'sveltekit-superforms';
-	import type { CreateStore, Org } from '$lib/server/contracts';
+	import type { CreateStore, Org } from '$lib/server/contracts/orgs.contract';
 	import { untrack } from 'svelte';
 
 	interface Props {
@@ -18,12 +18,9 @@
 	const { form, errors, enhance, constraints, message, delayed } = superForm(
 		untrack(() => formData)
 	);
-
-	$form.orgId = currentOrg.id;
 </script>
 
 <Form {enhance} message={$message}>
-	<input type="hidden" bind:value={$form.orgId} />
 	<TextInput
 		type="text"
 		id="name"
@@ -43,8 +40,8 @@
 		error={$errors.slug}
 		{...$constraints.slug}
 	/>
-	<ColorPicker bind:value={$form.slug} />
-	<Shipping bind:selectedValue={$form.slug} />
+	<ColorPicker bind:value={$form.color} />
+	<Shipping bind:selectedValue={$form.shipping} />
 
 	<SubmitButton
 		loading={$delayed}

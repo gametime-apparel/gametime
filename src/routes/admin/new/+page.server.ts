@@ -1,7 +1,7 @@
 import type { Actions, PageServerLoad } from './$types';
 import { superValidate } from 'sveltekit-superforms';
 import { zod4 } from 'sveltekit-superforms/adapters';
-import { createOrgSchema } from '$lib/server/contracts';
+import { createOrgSchema } from '$lib/server/contracts/orgs.contract';
 import { fail } from '@sveltejs/kit';
 import { redirect } from 'sveltekit-flash-message/server';
 import { handleActionError } from '$lib/server/http';

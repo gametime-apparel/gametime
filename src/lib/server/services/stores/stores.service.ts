@@ -1,15 +1,15 @@
 import type { DrizzleD1Database } from 'drizzle-orm/d1';
-import { orgs, type schema, stores } from '$lib/server/db/schema';
-import { type CreateStore, selectStoreSchema } from '$lib/server/contracts';
+import { type schema, stores } from '$lib/server/db/schema';
+import { type CreateStore, selectStoreSchema } from '$lib/server/contracts/stores.contract';
 import { error } from '@sveltejs/kit';
 
 class StoresService {
 	private readonly db: DrizzleD1Database<typeof schema>;
-	private readonly org: number;
+	private readonly orgId: number;
 
-	constructor(db: DrizzleD1Database<typeof schema>, org: number) {
+	constructor(db: DrizzleD1Database<typeof schema>, orgId: number) {
 		this.db = db;
-		this.org = org;
+		this.orgId = orgId;
 	}
 
 	public async list() {}
@@ -17,7 +17,10 @@ class StoresService {
 	public async create(data: CreateStore) {
 		const result = await this.db
 			.insert(stores)
-			.values(data)
+			.values({
+				...data,
+				orgId: this.orgId
+			})
 			.onConflictDoNothing()
 			.returning()
 			.get();

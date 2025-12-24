@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Org } from '$lib/server/contracts';
+	import type { Org } from '$lib/server/contracts/orgs.contract';
 	import { resolve } from '$app/paths';
 	import { slide } from 'svelte/transition';
 
@@ -111,7 +111,7 @@
 				{#if org.stores && org.stores.length > 0}
 					{#each org.stores as store (store.id)}
 						<a
-							href="/admin/orgs/{org.id}/stores/{store.id}"
+							href={resolve(`/admin/orgs/${org.slug}/stores/${store.slug}`)}
 							class="flex items-center justify-between rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm font-medium text-gray-700 shadow-sm transition-all hover:border-indigo-300 hover:shadow-md dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200 dark:hover:border-indigo-500"
 						>
 							<span>{store.name}</span>

@@ -2,8 +2,8 @@ import type { DrizzleD1Database } from 'drizzle-orm/d1';
 import type { schema } from '$lib/server/db/schema';
 import { orgs } from '$lib/server/db/schema';
 import { and, eq, isNull } from 'drizzle-orm';
-import type { CreateOrg, UpdateOrg } from '$lib/server/contracts';
-import { selectOrgSchema, selectOrgsSchema } from '$lib/server/contracts';
+import type { CreateOrg, UpdateOrg } from '$lib/server/contracts/orgs.contract';
+import { selectOrgSchema, selectOrgsSchema } from '$lib/server/contracts/orgs.contract';
 import { error } from '@sveltejs/kit';
 
 class OrgService {

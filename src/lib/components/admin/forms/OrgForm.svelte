@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { superForm } from 'sveltekit-superforms';
 	import type { SuperValidated } from 'sveltekit-superforms';
-	import type { CreateOrg } from '$lib/server/contracts';
+	import type { CreateOrg } from '$lib/server/contracts/orgs.contract';
 	import { TextInput, SlugInput, SubmitButton } from '$lib/components/admin/ui';
 	import { untrack } from 'svelte';
 	import Form from './Form.svelte';

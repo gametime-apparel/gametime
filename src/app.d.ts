@@ -1,5 +1,5 @@
 import type { Org as OrgService, Store as StoreService } from '$lib/server/services';
-import type { Org } from '$lib/server/contracts';
+import type { Org } from '$lib/server/contracts/orgs.contract';
 import type { DrizzleD1Database } from 'drizzle-orm/d1';
 import type { schema } from '$lib/server/db/schema';
 
