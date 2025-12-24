@@ -10,5 +10,5 @@
 	title="Update Organization"
 	subtitle="Update a client organization to the system"
 >
-	<OrgForm formData={data.form} />
+	<OrgForm mode="update" formData={data.form} />
 </Page>
