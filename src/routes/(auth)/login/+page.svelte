@@ -13,7 +13,7 @@
 </svelte:head>
 
 <div
-	class="w-full max-w-md space-y-6 rounded-2xl border border-gray-200 bg-white p-8 shadow-2xl backdrop-blur-lg dark:border-white/10 dark:bg-white/5"
+	class="w-full max-w-md space-y-6 rounded-2xl border border-gray-100 bg-gray-50 p-8 shadow-2xl backdrop-blur-lg dark:border-gray-800 dark:bg-gray-900"
 >
 	<div class="mb-8 text-center">
 		<h1 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Game Time</h1>
@@ -46,7 +46,13 @@
 		{/if}
 
 		<div class="space-y-6">
-			<Input type="password" name="password" placeholder="Enter Access Code" required autoFocus={true} />
+			<Input
+				type="password"
+				name="password"
+				placeholder="Enter Access Code"
+				required
+				autoFocus={true}
+			/>
 
 			<div class="cf-turnstile flex justify-center" data-sitekey={PUBLIC_TURNSTILE_SITE_KEY}></div>
 
