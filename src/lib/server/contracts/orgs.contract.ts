@@ -43,6 +43,7 @@ export const updateOrgSchema = createUpdateSchema(orgs, {
 	});
 
 export type CreateOrg = z.infer<typeof createOrgSchema>;
-export type Org = z.infer<typeof selectOrgWithStoreSchema>;
+export type Org = z.infer<typeof selectOrgSchema>;
+export type OrgWithStores = z.infer<typeof selectOrgWithStoreSchema>;
 export type Orgs = z.infer<typeof selectOrgsSchema>;
 export type UpdateOrg = z.infer<typeof updateOrgSchema>;
