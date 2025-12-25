@@ -8,7 +8,8 @@ const nameSchema = z.string().min(1, 'Name is required');
 
 const editableFields = {
 	name: true,
-	slug: true
+	slug: true,
+	color: true
 } as const;
 
 const overrides = {

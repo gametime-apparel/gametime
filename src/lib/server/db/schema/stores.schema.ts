@@ -8,7 +8,6 @@ export const stores = sqliteTable(
 		id: integer('id').primaryKey({ autoIncrement: true }),
 		name: text('name').notNull(),
 		slug: text('slug').notNull(),
-		color: text('color').notNull(),
 		shipping: text('shipping', { enum: ['required', 'optional', 'none'] }).notNull(),
 		...timestamps,
 		...archivedAt,

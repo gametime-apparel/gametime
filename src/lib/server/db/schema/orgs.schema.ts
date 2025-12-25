@@ -5,6 +5,7 @@ export const orgs = sqliteTable('orgs', {
 	id: integer('id').primaryKey({ autoIncrement: true }),
 	name: text('name').notNull(),
 	slug: text('slug').notNull().unique(),
+	color: text('color').notNull(),
 	...timestamps,
 	...archivedAt
 });

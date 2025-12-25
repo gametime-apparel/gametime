@@ -5,6 +5,7 @@
 	import { TextInput, SlugInput, SubmitButton } from '$lib/components/admin/ui';
 	import { untrack } from 'svelte';
 	import Form from './Form.svelte';
+	import ColorPicker from '$lib/components/admin/forms/ColorPicker.svelte';
 
 	interface Props {
 		mode?: 'create' | 'update';
@@ -39,6 +40,8 @@
 		{...$constraints.slug}
 		label="URL Slug"
 	/>
+
+	<ColorPicker bind:value={$form.color} />
 
 	<SubmitButton
 		loading={$delayed}
