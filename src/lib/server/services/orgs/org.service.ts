@@ -14,12 +14,12 @@ class OrgService {
 	}
 
 	public async create(insertData: CreateOrg) {
-		const data = {
-			name: insertData.name,
-			slug: insertData.slug
-		};
-
-		const result = await this.db.insert(orgs).values(data).onConflictDoNothing().returning().get();
+		const result = await this.db
+			.insert(orgs)
+			.values(insertData)
+			.onConflictDoNothing()
+			.returning()
+			.get();
 
 		if (!result) {
 			throw error(409, 'Org already exists');
