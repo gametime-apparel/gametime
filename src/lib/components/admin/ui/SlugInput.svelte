@@ -15,7 +15,6 @@
 		helperText,
 		value = $bindable(),
 		prefix = '/shop/',
-		class: className,
 		...rest
 	}: Props = $props();
 
@@ -66,7 +65,7 @@
 			onfocusout={handleSlugify}
 			{...rest}
 			style="padding-left: {prefixWidth + 12}px"
-			class="block w-full rounded-xl border border-gray-300 bg-white py-3 pr-3 text-base placeholder-gray-400 shadow-sm transition-all focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 dark:border-gray-700 dark:bg-gray-950 dark:text-white dark:placeholder-gray-600 dark:focus:border-indigo-500 dark:disabled:bg-gray-900 dark:disabled:text-gray-500 {className}"
+			class="input"
 			aria-invalid={error ? 'true' : undefined}
 		/>
 	</div>
