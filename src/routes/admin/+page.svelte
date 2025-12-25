@@ -3,6 +3,16 @@
 	import { Add, Company, Search } from '$lib/components/icons';
 
 	const { data } = $props();
+
+	let filteredOrgs = $state(data.orgs);
+	let searchTerm = $state('');
+
+	const handleSearch = () => {
+		filteredOrgs = filteredOrgs.filter((org) =>
+			org.name.toLowerCase().includes(searchTerm.toLowerCase())
+		);
+		if (searchTerm === '') filteredOrgs = data.orgs;
+	};
 </script>
 
 <svelte:head>
@@ -25,6 +35,8 @@
 			<Search class="mr-2 text-xl" />
 		</div>
 		<input
+			onkeyup={() => handleSearch()}
+			bind:value={searchTerm}
 			type="text"
 			class="w-full rounded-xl border-0 bg-white py-3 pl-10 text-base shadow-sm ring-1 ring-gray-300 ring-inset placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-600 focus:outline-0 focus:ring-inset dark:bg-gray-900 dark:text-white dark:ring-gray-800"
 			placeholder="Search organizations..."
@@ -33,7 +45,7 @@
 
 	<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
 		<!-- Organizations List -->
-		{#each data.orgs as org (org.id)}
+		{#each filteredOrgs as org (org.id)}
 			<a
 				href={resolve(`/admin/orgs/${org.slug}`)}
 				class="group overflow-hidden rounded-2xl border border-gray-200 bg-white transition-all hover:-translate-y-1 hover:shadow-lg dark:border-gray-800 dark:bg-gray-900 hover:border-{org.color}-500"
