@@ -24,11 +24,11 @@
 </script>
 
 <div
-	class="min-h-screen w-full bg-gray-50 text-gray-900 transition-colors duration-300 dark:bg-gray-950 dark:text-gray-100"
+	class="@container/dash min-h-screen w-full bg-gray-50 text-gray-900 transition-colors duration-300 dark:bg-gray-950 dark:text-gray-100"
 >
 	<Toaster />
 
-	<main>
+	<main class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
 		{@render children()}
 	</main>
 </div>
