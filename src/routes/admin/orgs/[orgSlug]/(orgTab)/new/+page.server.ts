@@ -1,8 +1,7 @@
-import type { PageServerLoad } from './$types';
+import type { PageServerLoad, Actions } from './$types';
 import { superValidate } from 'sveltekit-superforms';
 import { zod4 } from 'sveltekit-superforms/adapters';
-import { createStoreSchema } from '$lib/server/contracts/stores.contract';
-import type { Actions } from './$types';
+import { createStoreSchema } from '$lib/server/contracts/stores.contract.ts';
 import { fail } from '@sveltejs/kit';
 import { handleActionError } from '$lib/server/http';
 import { redirect } from 'sveltekit-flash-message/server';
@@ -30,7 +29,7 @@ export const actions: Actions = {
 		}
 
 		throw redirect(
-			`/admin`,
+			`/admin/orgs/${locals.currentOrg.slug}`,
 			{
 				type: 'success',
 				message: 'Organization Created'
