@@ -40,7 +40,7 @@
 		error={$errors.slug}
 		{...$constraints.slug}
 	/>
-	<ColorPicker bind:value={$form.color} />
+
 	<Shipping bind:selectedValue={$form.shipping} />
 
 	<SubmitButton

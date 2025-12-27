@@ -6,7 +6,6 @@ import { slugSchema } from '$lib/server/contracts/shared.ts';
 const editableFields = {
 	name: true,
 	slug: true,
-	color: true,
 	shipping: true
 } as const;
 
@@ -22,10 +21,13 @@ export const selectStoreSchema = createSelectSchema(stores).pick({
 	...editableFields
 });
 
+export const selectStoresSchema = selectStoreSchema.array();
+
 export const updateStoreSchema = createUpdateSchema(stores, overrides)
 	.partial()
 	.pick(editableFields);
 
 export type CreateStore = z.infer<typeof createStoreSchema>;
 export type Store = z.infer<typeof selectStoreSchema>;
+export type Stores = z.infer<typeof selectStoresSchema>;
 export type UpdateStore = z.infer<typeof updateStoreSchema>;
