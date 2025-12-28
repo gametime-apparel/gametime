@@ -1,4 +1,5 @@
 export { default as Back } from './Back.svelte';
+export { default as IconLink } from './IconLink.svelte';
 export { default as Input } from './Input.svelte';
 export { default as Org } from './Org.svelte';
 export { default as SlugInput } from './SlugInput.svelte';
