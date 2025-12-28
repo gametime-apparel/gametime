@@ -3,8 +3,11 @@
 		value: string;
 	};
 
-	let { value = $bindable('indigo') }: Props = $props();
-	value = 'indigo';
+	let { value = $bindable() }: Props = $props();
+
+	if (!value) {
+		value = 'indigo';
+	}
 
 	const colors = [
 		'slate',
@@ -31,7 +34,7 @@
 		'rose'
 	];
 
-	let selectedColor = $state('indigo');
+	let selectedColor = $state(value);
 
 	function selectColor(color: string, e: MouseEvent) {
 		e.preventDefault();

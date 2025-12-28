@@ -40,7 +40,8 @@ export const updateOrgSchema = createUpdateSchema(orgs, {
 })
 	.partial()
 	.pick({
-		name: true
+		name: true,
+		color: true
 	});
 
 export type CreateOrg = z.infer<typeof createOrgSchema>;
