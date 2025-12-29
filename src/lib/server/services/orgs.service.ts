@@ -6,7 +6,7 @@ import type { CreateOrg, UpdateOrg } from '$lib/server/contracts/orgs.contract';
 import { selectOrgSchema, selectOrgsSchema } from '$lib/server/contracts/orgs.contract';
 import { error } from '@sveltejs/kit';
 
-class OrgService {
+class OrgsService {
 	private readonly db: DrizzleD1Database<typeof schema>;
 
 	constructor(db: DrizzleD1Database<typeof schema>) {
@@ -77,4 +77,4 @@ class OrgService {
 	}
 }
 
-export default OrgService;
+export default OrgsService;
