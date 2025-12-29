@@ -1,5 +1,5 @@
 import { sqliteTable, integer, text } from 'drizzle-orm/sqlite-core';
-import { timestamps, archivedAt } from './shared';
+import { timestamps, archivedAt } from './_shared';
 
 export const orgs = sqliteTable('orgs', {
 	id: integer('id').primaryKey({ autoIncrement: true }),

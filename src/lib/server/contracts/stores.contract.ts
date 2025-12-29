@@ -1,7 +1,7 @@
 import { createInsertSchema, createSelectSchema, createUpdateSchema } from 'drizzle-zod';
 import { stores } from '$lib/server/db/schema';
 import { z } from 'zod';
-import { slugSchema } from '$lib/server/contracts/shared.ts';
+import { slugSchema } from './_shared.ts';
 
 const editableFields = {
 	name: true,

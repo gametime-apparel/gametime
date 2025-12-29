@@ -1,7 +1,7 @@
 import { createInsertSchema, createSelectSchema, createUpdateSchema } from 'drizzle-zod';
 import { orgs } from '$lib/server/db/schema';
 import { z } from 'zod';
-import { slugSchema } from '$lib/server/contracts/shared';
+import { slugSchema } from './_shared';
 import { selectStoreSchema } from '$lib/server/contracts/stores.contract';
 
 const nameSchema = z.string().min(1, 'Name is required');
