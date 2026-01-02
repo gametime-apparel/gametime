@@ -12,7 +12,7 @@ export const items = sqliteTable(
 		name: text('name').notNull(),
 		description: text('description'),
 		basePrice: integer('base_price').notNull(),
-		isActive: integer('is_active', { mode: 'boolean' }).default(true),
+		isActive: integer('is_active', { mode: 'boolean' }).default(true).notNull(),
 		...timestamps,
 		...archivedAt
 	},
