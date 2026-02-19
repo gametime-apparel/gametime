@@ -3,7 +3,7 @@
 </script>
 
 <div
-	class="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm dark:border-gray-800 dark:bg-gray-900"
+	class="overflow-hidden rounded-2xl border border-border bg-surface shadow-sm"
 >
 	<form use:enhance method="POST" class="flex flex-col gap-6 p-8">
 		{#if message}

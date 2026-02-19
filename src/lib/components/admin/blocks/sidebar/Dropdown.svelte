@@ -1,25 +1,25 @@
-<div class="absolute top-full z-50 mt-3 w-100 rounded-xl bg-white p-2 shadow-2xl dark:bg-gray-700">
+<div class="absolute top-full z-50 mt-3 w-100 rounded-xl bg-surface p-2 shadow-2xl border border-border">
 	<input
 		type="search"
 		placeholder="Search Organizations and Stores..."
-		class="mt-2 w-full rounded-lg bg-gray-100 p-2 text-sm focus:ring-1 dark:bg-gray-600"
+		class="mt-2 w-full rounded-lg bg-background p-2 text-sm text-primary placeholder:text-secondary focus:ring-1 focus:ring-accent"
 	/>
 
 	<div class="mt-2 max-h-[250px] space-y-1 overflow-y-auto">
-		<h3 class="px-2 pt-2 pb-1 text-xs font-semibold text-gray-500 dark:text-gray-400">
+		<h3 class="px-2 pt-2 pb-1 text-xs font-semibold text-secondary">
 			ORGANIZATIONS
 		</h3>
 
 		<div class="space-y-1">
 			<button
-				class="flex w-full items-center justify-between rounded-md p-1 hover:cursor-pointer hover:bg-indigo-50 dark:hover:bg-gray-600"
+				class="flex w-full items-center justify-between rounded-md p-1 hover:cursor-pointer hover:bg-background"
 			>
 				<span
-					class="flex items-center space-x-2 p-1 text-left text-sm font-semibold text-gray-900 dark:text-white"
+					class="flex items-center space-x-2 p-1 text-left text-sm font-semibold text-primary"
 				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
-						class="h-4 w-4 rotate-90 text-gray-400 transition-transform duration-200"
+						class="h-4 w-4 rotate-90 text-secondary transition-transform duration-200"
 						fill="none"
 						viewBox="0 0 24 24"
 						stroke="currentColor"
@@ -30,33 +30,33 @@
 					<span>Penn State Hockey</span>
 				</span>
 
-				<span class="text-xs text-gray-400">6 Stores</span>
+				<span class="text-xs text-secondary">6 Stores</span>
 			</button>
 
 			<div class="space-y-1 pl-8">
 				<a
 					href="#"
-					class="flex w-full items-center rounded-md bg-indigo-100 p-2 text-sm font-medium text-indigo-700 dark:bg-indigo-900/50 dark:text-indigo-300"
+					class="flex w-full items-center rounded-md bg-accent/10 p-2 text-sm font-medium text-accent"
 				>
 					Fall 2025 Fundraiser (Active)
 				</a>
 				<a
 					href="#"
-					class="flex w-full items-center rounded-md p-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600"
+					class="flex w-full items-center rounded-md p-2 text-sm hover:bg-background"
 				>
 					Winter 2026 Season
 				</a>
 			</div>
 		</div>
-		<div class="my-2 h-px bg-gray-200 dark:bg-gray-600"></div>
+		<div class="my-2 h-px bg-border"></div>
 
 		<button
-			class="flex w-full items-center justify-between rounded-md p-2 text-sm hover:bg-indigo-50 dark:hover:bg-gray-600"
+			class="flex w-full items-center justify-between rounded-md p-2 text-sm hover:bg-background"
 		>
 			<span class="flex items-center space-x-2">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
-					class="h-4 w-4 text-gray-400"
+					class="h-4 w-4 text-secondary"
 					fill="none"
 					viewBox="0 0 24 24"
 					stroke="currentColor"
@@ -66,14 +66,14 @@
 				</svg>
 				<span>Local Soccer Club</span>
 			</span>
-			<span class="text-xs text-gray-400">1 Store</span>
+			<span class="text-xs text-secondary">1 Store</span>
 		</button>
 	</div>
 
-	<div class="mt-2 flex justify-between border-t border-gray-200 p-2 pt-3 dark:border-gray-600">
+	<div class="mt-2 flex justify-between border-t border-border p-2 pt-3">
 		<a
 			href="#"
-			class="group relative flex items-center rounded-lg p-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600"
+			class="group relative flex items-center rounded-lg p-2 text-sm text-primary hover:bg-background"
 			aria-label="Manage All Organizations"
 		>
 			<svg
@@ -93,14 +93,14 @@
 			</svg>
 
 			<span
-				class="absolute left-full ml-3 hidden rounded bg-gray-700 p-1 text-xs whitespace-nowrap text-white group-hover:block dark:bg-gray-200 dark:text-gray-900"
+				class="absolute left-full ml-3 hidden rounded bg-primary p-1 text-xs whitespace-nowrap text-surface group-hover:block"
 			>
 				Manage All Organizations
 			</span>
 		</a>
 
 		<button
-			class="group relative flex items-center rounded-lg bg-indigo-500 p-2 text-sm text-white transition-colors hover:bg-indigo-600"
+			class="group relative flex items-center rounded-lg bg-accent p-2 text-sm text-white transition-colors hover:opacity-90"
 			aria-label="Add New Organization"
 		>
 			<svg
@@ -115,7 +115,7 @@
 			</svg>
 
 			<span
-				class="absolute right-full mr-3 hidden rounded bg-gray-700 p-1 text-xs whitespace-nowrap text-white group-hover:block dark:bg-gray-200 dark:text-gray-900"
+				class="absolute right-full mr-3 hidden rounded bg-primary p-1 text-xs whitespace-nowrap text-surface group-hover:block"
 			>
 				Add New Organization
 			</span>

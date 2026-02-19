@@ -11,7 +11,7 @@
 
 <a
 	{href}
-	class="group text-gray-500 transition-colors hover:text-gray-600 hover:dark:text-gray-400"
+	class="group text-secondary transition-colors hover:text-primary"
 >
 	<div class="inline-block transition-transform duration-200 ease-out group-hover:-translate-x-1">
 		<BackArrow />

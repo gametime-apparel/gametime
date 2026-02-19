@@ -40,7 +40,7 @@
 <div class="space-y-2">
 	<label
 		for={rest.id || rest.name}
-		class="block text-sm font-semibold text-gray-900 dark:text-gray-200"
+		class="block text-sm font-semibold text-primary"
 	>
 		{label}
 	</label>
@@ -56,7 +56,7 @@
 
 		<!-- Visible Prefix -->
 		<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-			<span class="text-gray-500 sm:text-sm">{prefix}</span>
+			<span class="text-secondary sm:text-sm">{prefix}</span>
 		</div>
 
 		<input
@@ -73,7 +73,7 @@
 	{#if error}
 		<p class="text-sm font-medium text-red-500">{error}</p>
 	{:else if helperText}
-		<p class="text-xs text-gray-500 dark:text-gray-400">
+		<p class="text-xs text-secondary">
 			{helperText}
 		</p>
 	{/if}

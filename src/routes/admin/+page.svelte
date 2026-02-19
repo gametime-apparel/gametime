@@ -40,7 +40,7 @@
 			onkeyup={() => handleSearch()}
 			bind:value={searchTerm}
 			type="text"
-			class="w-full rounded-xl border-0 bg-white py-3 pl-10 text-base shadow-sm ring-1 ring-gray-300 ring-inset placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-600 focus:outline-0 focus:ring-inset dark:bg-gray-900 dark:text-white dark:ring-gray-800"
+			class="w-full rounded-xl border-0 bg-background py-3 pl-10 text-base shadow-sm ring-1 ring-border ring-inset placeholder:text-secondary focus:ring-2 focus:ring-accent focus:outline-0 focus:ring-inset text-primary"
 			placeholder="Search organizations..."
 		/>
 	</div>
@@ -50,7 +50,7 @@
 		{#each filteredOrgs as org (org.id)}
 			<a
 				href={resolve(`/admin/orgs/${org.slug}`)}
-				class="group overflow-hidden rounded-2xl border border-gray-200 bg-white transition-all hover:-translate-y-1 hover:shadow-lg dark:border-gray-800 dark:bg-gray-900 hover:border-{org.color}-500"
+				class="group overflow-hidden rounded-2xl border border-border bg-surface transition-all hover:-translate-y-1 hover:shadow-lg hover:border-{org.color}-500"
 			>
 				<div class="p-6">
 					<!-- Top Section -->
@@ -62,7 +62,7 @@
 						</div>
 
 						<span
-							class="inline-flex items-center rounded-lg bg-gray-50 px-2.5 py-1 text-xs font-medium text-gray-600 ring ring-gray-500/10 ring-inset dark:bg-gray-800 dark:text-gray-400 dark:ring-gray-700"
+							class="inline-flex items-center rounded-lg bg-background px-2.5 py-1 text-xs font-medium text-secondary ring ring-border ring-inset"
 						>
 							<Company class="mr-1" />
 							{org.stores.length}
@@ -77,11 +77,11 @@
 						>
 							{org.name}
 						</h3>
-						<p class="mt-1 font-mono text-xs text-gray-500">/shop/{org.slug}</p>
+						<p class="mt-1 font-mono text-xs text-secondary">/shop/{org.slug}</p>
 					</div>
 				</div>
 				<div
-					class="h-1 w-full bg-gray-50 transition-colors duration-300 group-hover:bg-{org.color}-500 dark:bg-gray-800"
+					class="h-1 w-full bg-border transition-colors duration-300 group-hover:bg-{org.color}-500"
 				></div>
 			</a>
 		{/each}
