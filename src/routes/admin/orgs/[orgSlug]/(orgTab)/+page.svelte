@@ -36,23 +36,37 @@
 						</p>
 					</div>
 					<div class="mt-4 flex flex-col gap-2 @xs/list:flex-row @xl/list:mt-0">
-						<IconLink href="">
+						<IconLink
+							href={resolve(
+								`/admin/orgs/${data.currentOrg.slug}/stores/${store.slug}`,
+							)}
+						>
 							<Shirt class="text-2xl" />
 							<p>Items</p>
 						</IconLink>
 
-						<IconLink href="">
+						<IconLink
+							href={resolve(
+								`/admin/orgs/${data.currentOrg.slug}/stores/${store.slug}/categories`,
+							)}
+						>
 							<Tag class="text-2xl" />
 							<p>Categories</p>
 						</IconLink>
 
-						<IconLink href="">
+						<IconLink
+							href={resolve(
+								`/admin/orgs/${data.currentOrg.slug}/stores/${store.slug}/waves`,
+							)}
+						>
 							<Calendar class="text-2xl" />
 							<p>Waves</p>
 						</IconLink>
 
 						<a
-							href=""
+							href={resolve(
+								`/admin/orgs/${data.currentOrg.slug}/stores/${store.slug}/settings`,
+							)}
 							class="ml-4 hidden items-center rounded-xl p-4 transition-colors hover:bg-background hover:text-primary @2xl/list:flex"
 						>
 							<Gear class="text-3xl text-secondary" />
