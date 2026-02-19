@@ -64,7 +64,7 @@
 						<span
 							class="inline-flex items-center rounded-lg bg-background px-2.5 py-1 text-xs font-medium text-secondary ring ring-border ring-inset"
 						>
-							<Company class="mr-1" />
+							<Company class="mr-1 h-3 w-3" />
 							{org.stores.length}
 							{org.stores.length === 1 ? 'store' : 'stores'}
 						</span>

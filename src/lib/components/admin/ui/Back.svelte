@@ -11,10 +11,10 @@
 
 <a
 	{href}
-	class="group text-secondary transition-colors hover:text-primary"
+	class="group text-secondary flex items-center transition-colors hover:text-primary"
 >
 	<div class="inline-block transition-transform duration-200 ease-out group-hover:-translate-x-1">
-		<BackArrow />
+		<BackArrow class="w-5 h-5" />
 	</div>
 	{title}
 </a>
