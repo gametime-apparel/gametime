@@ -29,11 +29,14 @@ export const handle: Handle = async ({ event, resolve }) => {
 	const db = drizzle(event.platform.env.DB, { schema });
 	event.locals.db = db;
 	event.locals.Org = new Org(db);
-	const { orgSlug } = event.params;
+	const { orgSlug, storeSlug } = event.params;
 	if (orgSlug) {
 		const currentOrg = await event.locals.Org.find(orgSlug);
 		event.locals.Store = new Store(db, currentOrg.id);
 		event.locals.currentOrg = currentOrg;
+		if (storeSlug) {
+			event.locals.currentStore = await event.locals.Store.getBySlug(storeSlug);
+		}
 	}
 
 	return resolve(event);
