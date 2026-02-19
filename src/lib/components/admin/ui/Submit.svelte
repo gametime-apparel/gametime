@@ -10,9 +10,8 @@
 <button
 	type="submit"
 	disabled={loading}
-	class="flex w-full justify-center rounded-xl border border-transparent bg-blue-600 px-4 py-4 text-sm font-bold text-white shadow-sm transition-all duration-200
-  hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-white focus:outline-none disabled:cursor-not-allowed disabled:opacity-50
-  dark:hover:bg-blue-500 dark:focus:ring-offset-gray-900"
+	class="flex w-full justify-center rounded-xl border border-transparent bg-accent px-4 py-4 text-sm font-bold text-white shadow-sm transition-all duration-200
+  hover:opacity-90 focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-surface focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
 >
 	{#if loading}
 		<svg

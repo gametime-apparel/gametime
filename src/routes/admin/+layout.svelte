@@ -24,7 +24,7 @@
 </script>
 
 <div
-	class="min-h-screen w-full bg-gray-50 text-gray-900 transition-colors duration-300 dark:bg-gray-950 dark:text-gray-100"
+	class="min-h-screen w-full bg-background text-primary transition-colors duration-300"
 >
 	<Toaster />
 

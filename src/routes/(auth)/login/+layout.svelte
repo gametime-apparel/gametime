@@ -3,7 +3,7 @@
 </script>
 
 <div
-	class="flex min-h-screen w-full items-center justify-center bg-gray-50 p-4 text-gray-900 transition-colors duration-300 dark:bg-gray-950 dark:text-gray-100"
+	class="flex min-h-screen w-full items-center justify-center bg-background p-4 text-primary transition-colors duration-300"
 >
 	{@render children()}
 </div>

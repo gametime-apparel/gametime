@@ -28,9 +28,9 @@
 </script>
 
 <Back title="Back To Organizations" href="/admin" />
-<h1 class="truncate text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+<h1 class="truncate text-3xl font-bold tracking-tight text-primary">
 	{data.currentOrg.name}
 </h1>
-<p class="mt-1 text-sm text-gray-500 dark:text-gray-400">/shop/{data.currentOrg.slug}</p>
+<p class="mt-1 text-sm text-secondary">/shop/{data.currentOrg.slug}</p>
 <TabbedView links={tabs} />
 {@render children()}

@@ -19,19 +19,19 @@
 </div>
 
 <div
-	class="@container/list overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900"
+	class="@container/list overflow-hidden rounded-xl border border-border bg-surface"
 >
 	{#if data.stores.length > 0}
 		{#each data.stores as store (store.id)}
-			<div class="border-b border-gray-200 last-of-type:border-none dark:border-gray-800">
+			<div class="border-b border-border last-of-type:border-none">
 				<div
 					class="flex flex-col px-4 py-5 @xl/list:flex-row @xl/list:items-center @xl/list:justify-between @xl/list:gap-2"
 				>
 					<div class="truncate">
-						<h3 class="mb-1 text-lg font-semibold text-indigo-600 dark:text-indigo-400">
+						<h3 class="mb-1 text-lg font-semibold text-accent">
 							{store.name}
 						</h3>
-						<p class="truncate text-sm text-ellipsis text-gray-500 dark:text-gray-400">
+						<p class="truncate text-sm text-ellipsis text-secondary">
 							/shop/{data.currentOrg.slug}/{store.slug}
 						</p>
 					</div>
@@ -53,9 +53,9 @@
 
 						<a
 							href=""
-							class="ml-4 hidden items-center rounded-xl p-4 transition-colors hover:bg-gray-100 hover:text-gray-600 @2xl/list:flex dark:hover:bg-gray-800 dark:hover:text-gray-300"
+							class="ml-4 hidden items-center rounded-xl p-4 transition-colors hover:bg-background hover:text-primary @2xl/list:flex"
 						>
-							<Gear class="text-3xl text-gray-400 dark:text-gray-600" />
+							<Gear class="text-3xl text-secondary" />
 						</a>
 					</div>
 				</div>
@@ -63,7 +63,7 @@
 		{/each}
 	{:else}
 		<div class="flex flex-col items-center justify-center gap-4 px-4 py-12 text-center">
-			<p class="text-sm text-gray-500 dark:text-gray-400">
+			<p class="text-sm text-secondary">
 				No stores created for this organization yet.
 			</p>
 			<a class="btn" href={resolve(`/admin/orgs/${data.currentOrg.slug}/new`)}>

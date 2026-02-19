@@ -29,7 +29,7 @@
 </script>
 
 <div class="space-y-3">
-	<label for="shipping" class="block text-sm font-semibold text-slate-900 dark:text-slate-100">
+	<label for="shipping" class="block text-sm font-semibold text-primary">
 		Shipping Requirements
 	</label>
 
@@ -41,8 +41,8 @@
 				class={[
 					'group flex cursor-pointer flex-col items-center gap-2 rounded-xl border p-4 text-center transition-all hover:scale-105 active:scale-95',
 					selectedValue === value
-						? 'border-indigo-600 bg-indigo-50/50 ring-2 ring-indigo-600 ring-offset-2 dark:border-indigo-500 dark:bg-indigo-950/30 dark:ring-indigo-500 dark:ring-offset-slate-900'
-						: 'border-slate-200 bg-white text-slate-500 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-400'
+						? 'border-accent bg-accent/10 ring-2 ring-accent ring-offset-2 ring-offset-surface'
+						: 'border-border bg-surface text-secondary'
 				]}
 			>
 				<svg
@@ -54,8 +54,8 @@
 					stroke-linecap="round"
 					stroke-linejoin="round"
 					class="h-6 w-6 transition-colors {selectedValue === value
-						? 'text-indigo-600 dark:text-indigo-400'
-						: 'text-slate-400 dark:text-slate-600'}"
+						? 'text-accent'
+						: 'text-secondary'}"
 				>
 					<path d={icon} />
 				</svg>
@@ -63,14 +63,14 @@
 				<span class="flex flex-col">
 					<span
 						class="text-xs font-bold tracking-wider uppercase {selectedValue === value
-							? 'text-indigo-900 dark:text-indigo-100'
+							? 'text-primary'
 							: ''}"
 					>
 						{label}
 					</span>
 					<span
 						class="text-[10px] leading-tight opacity-70 {selectedValue === value
-							? 'text-indigo-700 dark:text-indigo-300'
+							? 'text-accent'
 							: ''}"
 					>
 						{description}

@@ -12,7 +12,7 @@
 <div class="space-y-2">
 	<label
 		for={rest.id || rest.name}
-		class="block text-sm font-semibold text-gray-900 dark:text-gray-200"
+		class="block text-sm font-semibold text-primary"
 	>
 		{label}
 	</label>

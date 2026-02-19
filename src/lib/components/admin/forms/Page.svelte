@@ -17,7 +17,7 @@
 		<!-- eslint-disable svelte/no-navigation-without-resolve -->
 		<a
 			href={previousPage}
-			class="inline-flex items-center text-sm font-medium text-gray-500 transition-colors hover:text-indigo-600 dark:text-gray-400 dark:hover:text-indigo-400"
+			class="inline-flex items-center text-sm font-medium text-secondary transition-colors hover:text-accent"
 		>
 			<svg
 				class="mr-1 h-4 w-4"
@@ -30,10 +30,10 @@
 			</svg>
 			{previousText}
 		</a>
-		<h1 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+		<h1 class="text-3xl font-bold tracking-tight text-primary">
 			{title}
 		</h1>
-		<p class="text-gray-500 dark:text-gray-400">{subtitle}</p>
+		<p class="text-secondary">{subtitle}</p>
 	</div>
 
 	{@render children()}

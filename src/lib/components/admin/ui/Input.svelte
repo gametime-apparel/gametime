@@ -18,7 +18,6 @@
 	{placeholder}
 	{required}
 	autofocus={autoFocus}
-	class="duration-200outline-none block w-full rounded-xl border border-gray-300 bg-white p-4 text-lg text-gray-900 placeholder-gray-400 transition-all outline-none
-	focus:border-transparent focus:ring-2 focus:ring-blue-500
-	dark:border-gray-700 dark:bg-gray-900/50 dark:text-white dark:placeholder-gray-500"
+	class="block w-full rounded-xl border border-border bg-background p-4 text-lg text-primary placeholder:text-secondary transition-all outline-none
+	focus:border-transparent focus:ring-2 focus:ring-accent focus:outline-none"
 />

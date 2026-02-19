@@ -48,17 +48,17 @@
 	<div class="flex items-center justify-between">
 		<label
 			for="color-picker"
-			class="text-sm font-bold tracking-wider text-slate-900 dark:text-slate-100"
+			class="text-sm font-bold tracking-wider text-primary"
 		>
 			Brand Color
 		</label>
 
 		<div
-			class="flex items-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-1 dark:border-slate-800 dark:bg-slate-900/50"
+			class="flex items-center gap-2 rounded-lg border border-border bg-surface px-2.5 py-1"
 		>
 			<div class="h-3 w-3 rounded-full bg-{selectedColor}-500 shadow-sm"></div>
 			<span
-				class="font-mono text-[10px] font-bold tracking-tighter text-slate-600 uppercase dark:text-slate-400"
+				class="font-mono text-[10px] font-bold tracking-tighter text-secondary uppercase"
 			>
 				{selectedColor}
 			</span>
@@ -76,8 +76,8 @@
 					'relative flex h-10 w-10 items-center justify-center rounded-xl border shadow-sm transition-all hover:scale-110 active:scale-95',
 					`bg-${color}-500`,
 					selectedColor === color
-						? 'z-10 scale-110 border-indigo-600 ring-2 ring-indigo-600 ring-offset-2 dark:ring-indigo-400 dark:ring-offset-slate-950'
-						: 'border-white/20 ring-1 ring-slate-200 dark:ring-slate-800'
+						? 'z-10 scale-110 border-accent ring-2 ring-accent ring-offset-2 ring-offset-surface'
+						: 'border-white/20 ring-1 ring-border'
 				]}
 			>
 				{#if selectedColor === color}

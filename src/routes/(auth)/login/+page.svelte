@@ -13,11 +13,11 @@
 </svelte:head>
 
 <div
-	class="w-full max-w-md space-y-6 rounded-2xl border border-gray-100 bg-gray-50 p-8 shadow-2xl backdrop-blur-lg dark:border-gray-800 dark:bg-gray-900"
+	class="w-full max-w-md space-y-6 rounded-2xl border border-border bg-surface p-8 shadow-2xl backdrop-blur-lg"
 >
 	<div class="mb-8 text-center">
-		<h1 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Game Time</h1>
-		<p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Admin Portal Access</p>
+		<h1 class="text-3xl font-bold tracking-tight text-primary">Game Time</h1>
+		<p class="mt-2 text-sm text-secondary">Admin Portal Access</p>
 	</div>
 
 	<form
