@@ -5,6 +5,7 @@
 		"@cloudflare/vitest-pool-workers": "^0.10.15",
 		"@eslint/compat": "^1.4.1",
 		"@eslint/js": "^9.39.2",
+		"@lucide/svelte": "^0.575.0",
 		"@playwright/test": "^1.57.0",
 		"@sveltejs/adapter-cloudflare": "^7.2.4",
 		"@sveltejs/kit": "^2.49.2",
