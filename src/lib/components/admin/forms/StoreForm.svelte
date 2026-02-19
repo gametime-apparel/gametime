@@ -4,7 +4,8 @@
 	import ColorPicker from '$lib/components/admin/forms/ColorPicker.svelte';
 	import Shipping from '$lib/components/admin/forms/Shipping.svelte';
 	import { superForm, type SuperValidated } from 'sveltekit-superforms';
-	import type { CreateStore, Org } from '$lib/server/contracts/orgs.contract';
+	import type { CreateStore } from '$lib/server/contracts/stores.contract';
+	import type { Org } from '$lib/server/contracts/orgs.contract';
 	import { untrack } from 'svelte';
 
 	interface Props {
@@ -30,16 +31,31 @@
 		error={$errors.name}
 		{...$constraints.name}
 	/>
-	<SlugInput
-		prefix="/shop/{currentOrg.slug}/"
-		type="text"
-		id="slug"
-		name="slug"
-		label="Store Slug"
-		bind:value={$form.slug}
-		error={$errors.slug}
-		{...$constraints.slug}
-	/>
+	{#if mode === 'update'}
+		<SlugInput
+			prefix="/shop/{currentOrg.slug}/"
+			type="text"
+			id="slug"
+			name="slug"
+			label="Store Slug"
+			bind:value={$form.slug}
+			error={$errors.slug}
+			disabled
+			{...$constraints.slug}
+		/>
+		<input type="hidden" name="slug" value={$form.slug} />
+	{:else}
+		<SlugInput
+			prefix="/shop/{currentOrg.slug}/"
+			type="text"
+			id="slug"
+			name="slug"
+			label="Store Slug"
+			bind:value={$form.slug}
+			error={$errors.slug}
+			{...$constraints.slug}
+		/>
+	{/if}
 
 	<Shipping bind:selectedValue={$form.shipping} />
 
