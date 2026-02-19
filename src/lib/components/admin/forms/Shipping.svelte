@@ -1,8 +1,6 @@
 <script lang="ts">
 	let { selectedValue = $bindable('none') } = $props();
 
-	selectedValue = 'none';
-
 	const options = [
 		{
 			id: 1,
