@@ -50,7 +50,7 @@
 		{#each filteredOrgs as org (org.id)}
 			<a
 				href={resolve(`/admin/orgs/${org.slug}`)}
-				class="group overflow-hidden rounded-2xl border border-transparent bg-surface transition-all hover:-translate-y-1 hover:shadow-lg hover:border-{org.color}-500"
+				class="group overflow-hidden rounded-2xl border border-border bg-surface transition-all hover:-translate-y-1 hover:shadow-lg hover:border-{org.color}-500"
 			>
 				<div class="p-6">
 					<!-- Top Section -->
@@ -81,7 +81,7 @@
 					</div>
 				</div>
 				<div
-					class="h-1 w-full bg-background transition-colors duration-300 group-hover:bg-{org.color}-500"
+					class="h-1 w-full bg-border transition-colors duration-300 group-hover:bg-{org.color}-500"
 				></div>
 			</a>
 		{/each}
